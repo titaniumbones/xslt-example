@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="ruin.xslt" ?>
+<poem>
+<l n="1">This <concrete-noun>wall-stone</concrete-noun> is <adjective>wondrous</adjective>; <hyperbole>fates broke it</hyperbole></l>
+<l n="2"><concrete-noun>courtyard pavements</concrete-noun> were smashed; the work of giants is decaying.</l>
+<l n="3"><concrete-noun>Roofs</concrete-noun> are fallen, ruinous <concrete-noun>towers</concrete-noun>,</l>
+<l n="4"> the frosty gate with <synonym>frost</synonym> on cement is <hard-word>ravaged</hard-word>, </l>
+</poem>
