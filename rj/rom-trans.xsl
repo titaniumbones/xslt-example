@@ -4,7 +4,7 @@
                 <!-- xmlns="http://www.w3.org/1999/xhtml" -->
                 <!-- xmlns:tei="http://www.tei-c.org/ns/1.0" -->
 
-  <!-- <xsl:strip-space elements=""/> -->
+  <xsl:strip-space elements="l  p"/>
 
 <xsl:template match="teiHeader">
 </xsl:template>
@@ -12,10 +12,17 @@
   
   <xsl:template match="text">
     <html>
-      <head><script src="https://code.jquery.com/jquery-3.4.1.min.js"></script></head>
+      <head>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <link href="./style.css" rel="stylesheet"/>
+      </head>
       <body>
-        <h1>Romeo and Juliet, Scene 2</h1>
-        <xsl:apply-templates select="front"/>
+        <nav>
+          <h1>Romeo and Juliet, Scene 2</h1>
+        </nav>
+        <header>
+          <xsl:apply-templates select="front"/>
+        </header>
         <xsl:apply-templates select="body"/>
           <script src="script.js"></script>
       </body>
@@ -49,15 +56,19 @@
   
 
   <xsl:template match="body">
-    <xsl:apply-templates select="div[@type = 'act']"  />
+    <main>
+      <xsl:apply-templates select="div[@type = 'act']"  />
+    </main>
   </xsl:template>
 
   <xsl:template match="div[@type = 'act']">
-    <xsl:apply-templates select="node()"/>
+    <div class="act">
+      <xsl:apply-templates select="node()"/>
+    </div>
   </xsl:template>
 
   <xsl:template match="div[@type = 'scene']">
-    <div style="padding-left: 30px; border: 2px solid black; margin:15px;">
+    <div class="scene" >
       <xsl:apply-templates select="node()"/>
     </div>
   </xsl:template>
@@ -71,22 +82,31 @@
   </xsl:template>
 
   <xsl:template match="sp">
-    <p style="padding-left:20px;"><strong><xsl:value-of select="descendant::speaker"/></strong>
+    <p class="speaker"><strong><xsl:value-of select="descendant::speaker"/></strong>
     <xsl:apply-templates select="l | p"/>
     </p>
   </xsl:template>
   
   <xsl:template match="l | p">
-      <!-- <em>Talking </em> -->
-      <div style="padding-left:1-px;background-color: gray;"><xsl:apply-templates select="node()"/></div>
+    <em>Talking </em>
+    
+    <!-- <div class="line"> -->
+    <!--   <xsl:for-each select="node()"> -->
+    <!--     <xsl:sort select="position()" data-type="number" order="descending"/> -->
+    <!--     <xsl:apply-templates select="."/> -->
+    <!-- </xsl:for-each> -->
+    <!-- </div> -->
   </xsl:template>
 
-  <xsl:template match="w | c ">
-      <span style="background-color:x;"><xsl:apply-templates select="node()"/></span>
+  <xsl:template match="w | pc ">
+      <span class="notshown"><xsl:apply-templates select="node()"/></span>
   </xsl:template>
 
-  <xsl:template match="w[@ana = '#n1'] ">
-      <span style="font-weight:700;color:red;"><xsl:apply-templates select="node()"/></span>
+    <xsl:template match="c"><span class="notshown">&#160;<xsl:apply-templates select="node()"/></span></xsl:template>
+
+
+  <xsl:template match="w[@ana = '#n1' or @ana = '#n2'] ">
+      <span class="noun"><xsl:apply-templates select="node()"/></span>
   </xsl:template>
 
 
