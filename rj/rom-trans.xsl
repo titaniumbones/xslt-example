@@ -66,9 +66,9 @@ div.act {
         <nav>
           <h1>Romeo and Juliet, Scene 2</h1>
         </nav>
-        <header>
+        <div class="header">
           <xsl:apply-templates select="front"/>
-        </header>
+        </div>
         <xsl:apply-templates select="body"/>
           <script src="script.js"></script>
       </body>
@@ -134,14 +134,14 @@ div.act {
   </xsl:template>
   
   <xsl:template match="l | p">
-    <em>Talking </em>
-    
-    <!-- <div class="line"> -->
-    <!--   <xsl:for-each select="node()"> -->
-    <!--     <xsl:sort select="position()" data-type="number" order="descending"/> -->
-    <!--     <xsl:apply-templates select="."/> -->
-    <!-- </xsl:for-each> -->
-    <!-- </div> -->
+     <!-- <em>Talking </em> -->
+     <!--  -->
+    <div class="line">
+      <xsl:for-each select="node()">
+        <!-- <xsl:sort select="position()" data-type="number" order="descending"/> -->
+        <xsl:apply-templates select="."/>
+    </xsl:for-each>
+    </div>
   </xsl:template>
 
   <xsl:template match="w | pc ">
